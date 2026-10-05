@@ -76,7 +76,7 @@ Follow the client's account connection flow and sign in to your own WebstashAI a
 
 ## Try it
 
-- “Save this link to my WebstashAI library: https://example.com.”
+- `Save https://example.com to my WebstashAI library.`
 - “Find my saved pages about product design and summarize them with source links.”
 - “Build a project brief from my saved sources and show disagreements and gaps.”
 - “Review a few of my saved highlights.”
