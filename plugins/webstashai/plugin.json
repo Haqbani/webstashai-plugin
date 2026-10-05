@@ -1,0 +1,94 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "webstashai",
+  "version": "0.2.0",
+  "description": "Research saved sources, build cited project briefs, maintain annotations and tags, and review Organizer proposals in WebstashAI.",
+  "author": {
+    "name": "WebstashAi"
+  },
+  "homepage": "https://webstashai.com",
+  "keywords": [
+    "bookmarks",
+    "research",
+    "reading-list",
+    "notes",
+    "highlights"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "WebstashAI",
+        "shortDescription": "Research and review your saves",
+        "longDescription": "Connect your existing WebstashAI account to save links, research saved sources with citations, and build project briefs that identify agreements, disagreements and evidence gaps. Newly saved pages may need time to finish processing, and ranked results cover a subset of your library. Continue reading saved content, browse notes and highlights, and make requested annotation changes. Add or remove tags, including Arabic text, while preserving other tags; conflicting edits require checking the latest version. Prepare Organizer proposals and confirm the exact preview with your AI in chat. Applying or undoing uses the current preview hash; a website visit is optional. Progress reports identify partial results and conflicts. Optional previews include a text fallback. Available features depend on your connected account and server. This plugin accesses existing-account features and does not sell subscriptions or start purchases.",
+        "developerName": "WebstashAi",
+        "category": "Productivity",
+        "defaultPrompt": [
+          "Build a project brief from my saved sources, with citations, disagreements, gaps, and retrieval limits.",
+          "Add «مشروع البحث» to my chosen saved page, preserving its other tags and checking the current revision first.",
+          "Prepare an Organizer preview for my library and show it in chat before applying any changes."
+        ],
+        "websiteURL": "https://webstashai.com",
+        "supportURL": "https://webstashai.com/support",
+        "privacyPolicyURL": "https://webstashai.com/privacy.html",
+        "termsOfServiceURL": "https://webstashai.com/terms",
+        "logo": "./assets/logo.png",
+        "composerIcon": "./assets/logo.png"
+      },
+      "review": {
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Fresh save. Setup: a dedicated reviewer account in which the submission-guide URL is not saved. Saving creates reviewer test data; do not run against a personal library without authorization.",
+              "prompt": "Save https://developers.openai.com/plugins/deploy/submission to my WebstashAI library.",
+              "tools_triggered": "check_url, save_page",
+              "expected_behavior": "Call check_url with the exact supplied URL. If absent, call save_page with that URL. Report the returned saved-page ID and processing status. Claim search availability only after get_page_status or a structured page result reports search_ready=true; do not save another URL or repeat a save after an ambiguous result."
+            },
+            {
+              "description": "Duplicate handling. Setup: the package-guide URL is already saved and indexed in the dedicated reviewer account. Record its actual page ID during fixture setup.",
+              "prompt": "Save https://developers.openai.com/plugins/build/plugins for later, but skip it if I already saved it.",
+              "tools_triggered": "check_url",
+              "expected_behavior": "Call check_url with the exact package-guide URL and report the existing page using the returned ID and status. Do not call save_page, reindex_page, or another mutating tool when the existing save is found."
+            },
+            {
+              "description": "Saved-library research. Setup: the dedicated reviewer account contains indexed package, submission, and plugin-guideline pages from developers.openai.com. Confirm search readiness before the run.",
+              "prompt": "What did I save about packaging OpenAI plugins? Read the relevant saved sources, then summarize them and include source links.",
+              "tools_triggered": "search_pages, get_page",
+              "expected_behavior": "Search the saved library with a query about OpenAI plugin packaging. If relevant results are returned, read at least one relevant returned page ID with get_page before summarizing. Cite only URLs returned by these tools and support each summary with returned content. If no relevant results are returned, explain that limitation without inventing saved sources or silently substituting a web search."
+            },
+            {
+              "description": "Add one note. Setup: the package-guide page is saved in the reviewer account, and the note text below is absent. Resolve the page through check_url; use the real returned ID.",
+              "prompt": "Add this note to my saved https://developers.openai.com/plugins/build/plugins page: Compare packaging requirements before release.",
+              "tools_triggered": "check_url, add_note, list_notes",
+              "expected_behavior": "Resolve the exact URL with check_url, then call add_note with that returned page_id and content exactly 'Compare packaging requirements before release.'. Use list_notes with the same page_id to verify persistence. Report only the note that actually persisted; do not add notes to another page or overwrite existing notes."
+            },
+            {
+              "description": "Capture a supplied highlight. Setup: the submission-guide URL is already saved in the reviewer account and has no highlight with this text. The text is reviewer-supplied test data, not a claimed quotation from the page.",
+              "prompt": "Save this highlight on https://developers.openai.com/plugins/deploy/submission: Check review access before submitting.",
+              "tools_triggered": "save_highlight, list_highlights",
+              "expected_behavior": "Call save_highlight with the exact URL and text 'Check review access before submitting.'. Call list_highlights filtered to the same URL and verify the text is present. Preserve the supplied wording and source URL. Report any tool failure instead of claiming the highlight was saved."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Image creation is outside this plugin's capabilities. Explain that WebstashAI stores and retrieves saved content; do not invoke WebstashAI tools, including save_image, or claim an image was generated.",
+              "prompt": "Use WebstashAI to generate a new watercolor landscape image."
+            },
+            {
+              "description": "Digital purchases and subscription upgrades are outside the plugin. Explain that it accesses existing-account features. Do not invoke WebstashAI tools, initiate a purchase, link to a checkout, request payment details, or promote an upgrade.",
+              "prompt": "Use this plugin to purchase a new WebstashAI subscription for me."
+            },
+            {
+              "description": "Public-web discovery is outside the saved-library search. Explain that WebstashAI searches the user's saved pages and cannot guarantee coverage of unsaved web articles. Do not invoke WebstashAI search or save tools for this request or fabricate current web results.",
+              "prompt": "Search the entire public web for today's new articles, including pages I have never saved, using only WebstashAI."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Adds cited project briefs with disagreements and coverage limits, continued reading of saved content, note and highlight browsing, read-only highlight reflection, and tag edits checked against the latest revision, including Arabic text. Organizer proposals use authenticated review and explicit approval, with Apply and Undo progress reporting. Optional previews include text fallbacks.",
+        "countries": []
+      }
+    }
+  }
+}

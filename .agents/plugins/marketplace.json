@@ -1,0 +1,20 @@
+{
+  "name": "webstashai",
+  "interface": {
+    "displayName": "WebstashAI"
+  },
+  "plugins": [
+    {
+      "name": "webstashai",
+      "source": {
+        "source": "local",
+        "path": "./plugins/webstashai"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
