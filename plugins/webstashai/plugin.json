@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "webstashai",
-  "version": "0.2.0",
-  "description": "Research saved sources, build cited project briefs, maintain annotations and tags, and review Organizer proposals in WebstashAI.",
+  "version": "0.2.2",
+  "description": "Research saved sources, build cited project briefs, maintain annotations and tags, and verify automatic Organizer rules in WebstashAI.",
   "author": {
     "name": "WebstashAi"
   },
@@ -19,7 +19,7 @@
       "interface": {
         "displayName": "WebstashAI",
         "shortDescription": "Research and review your saves",
-        "longDescription": "Connect your existing WebstashAI account to save links, research saved sources with citations, and build project briefs that identify agreements, disagreements and evidence gaps. Newly saved pages may need time to finish processing, and ranked results cover a subset of your library. Continue reading saved content, browse notes and highlights, and make requested annotation changes. Add or remove tags, including Arabic text, while preserving other tags; conflicting edits require checking the latest version. Prepare Organizer proposals and confirm the exact preview with your AI in chat. Applying or undoing uses the current preview hash; a website visit is optional. Progress reports identify partial results and conflicts. Optional previews include a text fallback. Available features depend on your connected account and server. This plugin accesses existing-account features and does not sell subscriptions or start purchases.",
+        "longDescription": "Connect your existing WebstashAI account to save links, research saved sources with citations, and build project briefs that identify agreements, disagreements and evidence gaps. Newly saved pages may need time to finish processing, and ranked results cover a subset of your library. Continue reading saved content, browse notes and highlights, and make requested annotation changes. Add or remove tags, including Arabic text, while preserving other tags; conflicting edits require checking the latest version. Prepare Organizer proposals and confirm the exact preview with your AI in chat. Configure future-save rules while preserving current placements when requested, then verify the saved rules are enabled at their approved destinations. Applying or undoing uses the current preview hash; a website visit is optional. Progress reports distinguish page placements, enabled rules and any verified subsequent automatic save, including partial results and conflicts. Optional previews include a text fallback. Available features depend on your connected account and server. This plugin accesses existing-account features and does not sell subscriptions or start purchases.",
         "developerName": "WebstashAi",
         "category": "Productivity",
         "defaultPrompt": [
@@ -86,7 +86,7 @@
         }
       },
       "publication": {
-        "release_notes": "Adds cited project briefs with disagreements and coverage limits, continued reading of saved content, note and highlight browsing, read-only highlight reflection, and tag edits checked against the latest revision, including Arabic text. Organizer proposals use authenticated review and explicit approval, with Apply and Undo progress reporting. Optional previews include text fallbacks.",
+        "release_notes": "Automatic Organizer requests now use proposal and approval-bound Apply, followed by verification that the requested persistent rules are saved and enabled. Future-only setup explicitly preserves existing placements without assessing or moving them. Completion reports distinguish manual placement, enabled rules and a verified subsequent automatic save. Failed or pending proposals remain incomplete, and expired plans require a fresh preview. Restored the original WebstashAI logo for the plugin listing and composer icon.",
         "countries": []
       }
     }

@@ -8,13 +8,13 @@
 
 <p align="center">
   <a href="https://webstashai.com">Open WebstashAI</a> ·
-  <a href="https://github.com/Haqbani/webstashai-plugin/releases/download/v0.2.0/webstashai-0.2.0.zip">Download plugin ZIP</a> ·
-  <a href="https://github.com/Haqbani/webstashai-plugin/releases/tag/v0.2.0">Release notes</a>
+  <a href="https://github.com/Haqbani/webstashai-plugin/releases/download/v0.2.2/webstashai-0.2.2.zip">Download plugin ZIP</a> ·
+  <a href="https://github.com/Haqbani/webstashai-plugin/releases/tag/v0.2.2">Release notes</a>
 </p>
 
 Use your own WebstashAI account to save links, find saved sources, work with notes and highlights, and review library organization proposals. You can connect the MCP server directly or install the plugin for additional guided workflows. No OpenAI store listing is required for these installation methods.
 
-**Early access:** version 0.2.0. The package is checked for its structure, included files, and production connection settings. Complete workflows have not been verified in every supported client.
+**Early access:** package version 0.2.2. Local checks validate the package structure, included files, and declared production MCP connection. Publication, installation, OAuth, and complete workflows are separate checks; this package does not claim verification in every supported client.
 
 ## Installation
 
@@ -53,13 +53,13 @@ The plugin includes workflows for saving links, researching your library, creati
 
 ### Download the plugin ZIP
 
-1. [Download webstashai-0.2.0.zip](https://github.com/Haqbani/webstashai-plugin/releases/download/v0.2.0/webstashai-0.2.0.zip).
+1. [Download webstashai-0.2.2.zip](https://github.com/Haqbani/webstashai-plugin/releases/download/v0.2.2/webstashai-0.2.2.zip).
 2. Use your client's plugin import or upload option, if available, and select the ZIP.
 3. Connect your own WebstashAI account through OAuth.
 
 ChatGPT archive upload depends on your account and workspace permissions. Imported plugins that declare MCP servers are currently **desktop-only in ChatGPT**, including this package. For ChatGPT web, use the direct connection instructions above. See [OpenAI's import restrictions](https://learn.chatgpt.com/docs/enterprise/plugin-management#desktop-only-plugins).
 
-Download the release asset named `webstashai-0.2.0.zip`; GitHub's **Source code (zip)** contains the whole distribution repository and is not the installable plugin archive.
+Download the release asset named `webstashai-0.2.2.zip`; GitHub's **Source code (zip)** contains the whole distribution repository and is not the installable plugin archive.
 
 ### Other MCP clients
 
@@ -93,7 +93,13 @@ codex plugin marketplace upgrade webstashai
 codex plugin add webstashai@webstashai
 ```
 
-Start a new chat after updating. For ZIP installations, use your client's update option with the newer release ZIP. If ChatGPT shows an old tool list, open the WebstashAI connection settings and select **Refresh tools**.
+Verify **0.2.2** in Codex’s Installed plugins view, then start a fresh chat with WebstashAI enabled. An earlier chat may retain the previous plugin instructions. Verify the connected Organizer tools and saved enabled rules before claiming automatic organization works. For ZIP installations, use your client's update option with the newer release ZIP. If ChatGPT shows an old tool list, open the WebstashAI connection settings and select **Refresh tools**.
+
+## 0.2.2 changes
+
+- Automatic organization uses an Organizer preview, confirmation-bound Apply, and verification that the saved rules are enabled. Future-only setup preserves existing page placements.
+- Reports distinguish current page placement, enabled rules, and any verified automatic assignment of a later save. Pending or failed operations stay incomplete.
+- The listing and composer use the original WebstashAI logo.
 
 ## Help
 
